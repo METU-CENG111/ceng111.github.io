@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.url != "/" %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} | {{ site.subtitle }}{% endif %}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="{{ '/' | relative_url }}">
+      <span class="wordmark-code">CENG&nbsp;111</span>
+      <span class="wordmark-sub">{{ site.department }}</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+  </div>
+  <nav class="site-nav" id="site-nav" aria-label="Main">
+    <div class="wrap nav-inner">
+      {% for item in site.nav %}
+        {% assign target = item.url | relative_url %}
+        <a href="{{ target }}"{% if page.url == item.url %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a>
+      {% endfor %}
+    </div>
+  </nav>
+</header>
+
+<main id="main" class="wrap content">
+  {% if page.url != "/" %}<h1>{{ page.title }}</h1>{% endif %}
+  {{ content }}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>{{ site.title }}</strong> — {{ site.subtitle }} · {{ site.semester }}</p>
+    <p>Announcements are made through <a href="https://odtuclass.metu.edu.tr">ODTUClass</a>. Check the news forum daily.</p>
+    <p class="muted">{{ site.department }} · <a href="https://ceng.metu.edu.tr">ceng.metu.edu.tr</a></p>
+  </div>
+</footer>
+
+<script>
+  // Wrap wide tables so they scroll on their own instead of the page.
+  document.querySelectorAll(".content table").forEach(function (t) {
+    var w = document.createElement("div");
+    w.className = "table-wrap";
+    t.parentNode.insertBefore(w, t);
+    w.appendChild(t);
+  });
+  // Mobile menu.
+  var btn = document.querySelector(".nav-toggle");
+  btn.addEventListener("click", function () {
+    var open = document.body.classList.toggle("nav-open");
+    btn.setAttribute("aria-expanded", open);
+  });
+</script>
+
+</body>
+</html>

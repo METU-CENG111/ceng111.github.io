@@ -1,0 +1,43 @@
+# ---------------------------------------------------------------------------
+# CENG 111 website settings.
+# Edit the values below to change the site title, semester, or the tabs.
+# ---------------------------------------------------------------------------
+
+title: CENG 111
+subtitle: Introduction to Computer Engineering Concepts
+semester: Fall 2026
+department: Department of Computer Engineering, METU
+description: >-
+  Official course site for CENG 111, Introduction to Computer Engineering
+  Concepts, Department of Computer Engineering, Middle East Technical University.
+
+url: https://ceng111.github.io
+baseurl: ""
+
+# --- The tabs across the top. Add, remove or reorder lines here. -----------
+# "url" must match the "permalink" written at the top of the matching .md file.
+nav:
+  - title: Home
+    url: /
+  - title: Course Info
+    url: /course/
+  - title: Schedule
+    url: /schedule/
+  - title: Lab
+    url: /lab/
+  - title: Exams & Grading
+    url: /exams/
+  - title: Resources
+    url: /resources/
+
+# --- Build settings. You normally never need to touch anything below. ------
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+exclude:
+  - README.md
+  - files/README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
